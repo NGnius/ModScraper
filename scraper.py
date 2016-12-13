@@ -1,5 +1,5 @@
 import sys, os
-sys.path.append(os.getcwd()+'/resources')
+sys.path.append(os.getcwd()+'/scraperResources')
 import pageRet, fileIO, wordSearcher
 class pageClass:
     def ret(self, url):
