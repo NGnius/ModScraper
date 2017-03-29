@@ -1,8 +1,8 @@
-import scraper, os, time
-dates = []
-forumsToCheckFile = open(os.getcwd()+r"/Resources/ForumsToCheck.txt", "r")
-forums = forumsToCheckFile.readlines()
-forumsToCheckFile.close
+import scraper, os, time, sys
+sys.path.append(os.getcwd()+'/Resources')
+import ForumsToCheck
+ForumsToCheck.loadFile()
+forums = ForumsToCheck.forums
 def necroDetector(): #return each thread that has a last post with a different year than the second last and first post in the same thread, if it is the most
     #recently updated thread in the given section, as per the forum sections stored in the ForumsToCheck.txt file
     for i in range(0,len(forums)):
@@ -29,7 +29,7 @@ def necroDetector(): #return each thread that has a last post with a different y
             if dates[0][0][0] != dates[-1][0][0] and dates[-2][0][0] != dates[-1][0][0]:
                 print ("Boop: We have a necro from ", firstPostLink) #Don't judge my booping
                 necroPosts.append(firstPostLink)
-        return necroPosts
+    return necroPosts
 
 def detectNecro(link, mode = "boolean"): #detect if most recent thread in link has been bumped from a different year
         #boolean mode returns if the first post has been necroed (True if it has been, False if not)
