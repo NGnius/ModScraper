@@ -29,7 +29,7 @@ def necroDetector(): #return each thread that has a last post with a different y
             if dates[0][0][0] != dates[-1][0][0] and dates[-2][0][0] != dates[-1][0][0]:
                 print ("Boop: We have a necro from ", firstPostLink) #Don't judge my booping
                 necroPosts.append(firstPostLink)
-    return necroPosts
+        return necroPosts
 
 def detectNecro(link, mode = "boolean"): #detect if most recent thread in link has been bumped from a different year
         #boolean mode returns if the first post has been necroed (True if it has been, False if not)
@@ -59,4 +59,4 @@ def detectNecro(link, mode = "boolean"): #detect if most recent thread in link h
                     output = True
                 if mode == "link":
                     output == firstPostLink
-    return output
+        return output
