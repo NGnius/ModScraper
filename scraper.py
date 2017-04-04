@@ -1,6 +1,6 @@
 import sys, os
 sys.path.append(os.getcwd()+'/scraperResources')
-import pageRet, fileIO, wordSearcher
+import pageRet, fileIO, wordSearcher, findFirstPost
 class pageClass:
     def ret(self, url):
         self.raw = pageRet.pageRet(url).decode()
@@ -14,6 +14,8 @@ class pageClass:
             elif not ignoreChars:
                 text += str(char)
         self.text = text
+    def findFirstPost(self):
+        return findFirstPost.FirstPost(self.raw)
 page = pageClass()
 
 def find(string):
