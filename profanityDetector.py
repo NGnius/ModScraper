@@ -1,27 +1,10 @@
 import scraper, os
-import ForumsToCheck
+import ForumsToCheck, Profanity
 ForumsToCheck.loadFile()
-forums = ForumsToCheck.forums
-def loadProfanity():
-    file = scraper.fileIO.retrieveFile(os.getcwd()+r"/Resources/Profanity.txt")
-    profanity = [] #in format [word, weight] - word is the profanity word, while
-    word = ""
-    for i in file:
-        if (i == " " or i =="\n") and word!="":
-            try:
-                profanity[len(profanity)-1][1]=int(word) #if it's a number, overwrite the weight of the last word
-            except:
-                profanity.append([word.lower(), 1])
-            word = ""
-        elif i!=" " and i!="\n":
-            word += i
-    try: #make sure the last item doesn't get forgotten
-        profanity[len(profanity)-1][1]=int(word) 
-    except:
-        profanity.append([word.lower(), 1])
-    return profanity
+forums = ForumsToCheck.forums #array of all forum section links
 
-def profanityDetector(): #detects all profanity in the designated forum sections
+def profanityDetector(): #detects all profanity in the designated forum sections, returns an array of threads with too much swearing
+    profanityOverloads = []
     for i in forums:
         scraper.page.ret(i)
         firstPost = scraper.page.findFirstPost()
@@ -33,6 +16,8 @@ def profanityDetector(): #detects all profanity in the designated forum sections
             swearCount += instances*j[1] #increase the swearCount by the number of times the word was used times the weight of that swear word
         if swearCount > 20: #arbitrary number that says that the poster has sworn too much when exceeded
             print("Boop: We have a swear overload in ", i)
+            profanityOverloads.append(i)
+    return profanityOverloads
 
 def detectProfanity(link, mode="boolean"):
     output = False
@@ -50,10 +35,7 @@ def detectProfanity(link, mode="boolean"):
         if mode == "link":
             output = firstPost
     return output
-            
-            
-
-profanityList = loadProfanity()
 
 
-    
+
+profanityList = Profanity.loadProfanity()

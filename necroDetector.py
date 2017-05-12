@@ -2,11 +2,11 @@ import scraper, os, time, sys
 sys.path.append(os.getcwd()+'/Resources')
 import ForumsToCheck
 ForumsToCheck.loadFile()
-forums = ForumsToCheck.forums
+forums = ForumsToCheck.forums #array of all forum section links
 def necroDetector(): #return each thread that has a last post with a different year than the second last and first post in the same thread, if it is the most
     #recently updated thread in the given section, as per the forum sections stored in the ForumsToCheck.txt file
+    necroPosts = []
     for i in range(0,len(forums)):
-        necroPosts = []
         scraper.page.ret(forums[i]) #load the page
         firstPostLink = scraper.page.findFirstPost() #find the first post
         #find all of the dates of the posts on the page (if the thread has more than one page, this will only check the last page, which shouldn't matter)
