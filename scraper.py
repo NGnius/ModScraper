@@ -1,6 +1,6 @@
 import sys, os
 sys.path.append(os.getcwd()+'/scraperResources')
-import pageRet, fileIO, wordSearcher, findPosts, findDates
+import pageRet, fileIO, wordSearcher, findPosts, findDates, findTitle
 class pageClass:
     def ret(self, url):
         self.raw = pageRet.pageRet(url).decode()
@@ -20,6 +20,12 @@ class pageClass:
         return findPosts.FindPosts(self.raw)
     def findDates(self): #find all post dates in a post
         return findDates.findDates(self.text)
+    def findTitle(self):
+        return findTitle.findTitle(self.raw)
+    def findTopicTitle(self):
+        fullTitle = self.findTitle()
+        topicTitle = fullTitle[wordSearcher.wordSearcher(" Topic: ", fullTitle, output="lastchar"):]
+        return topicTitle
 page = pageClass()
 
 def find(string):

@@ -32,7 +32,6 @@ def necroDetector(): #return links to each first thread in each forum section wi
 def detectNecro(link, mode = "boolean"): #detect if most recent thread in forum section has been bumped from a different year, link must be a URL for a Robocraft forum section
     #boolean mode returns if the first post has been necroed (True if it has been, False if not)
     #link mode returns the link of the necroed thread if the first post has been necroed, boolean False if not
-    output = False
     scraper.page.ret(link) #load page
     firstPostLink = scraper.page.findFirstPost() #find the first post
     return isNecro(firstPostLink, mode=mode)
