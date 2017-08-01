@@ -13,9 +13,10 @@ def loadProfanity():
             word = ""
         elif i!=" " and i!="\n":
             word += i
-    try: #make sure the last item doesn't get forgotten
-        profanity[len(profanity)-1][1]=int(word)
-    except:
-        profanity.append([word.lower(), 1])
+    if word !="": #make sure the last item doesn't get forgotten
+        try:
+            profanity[len(profanity)-1][1]=int(word)
+        except:
+            profanity.append([word.lower(), 1])
     print(profanity)
     return profanity
