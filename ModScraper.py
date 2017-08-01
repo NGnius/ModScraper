@@ -2,7 +2,7 @@
 
 import sys, os, time
 sys.path.append(os.getcwd()+'/Resources')
-import ForumsToCheck, wordSearcher, scraper, necroDetector, profanityDetector, config
+import ForumsToCheck, wordSearcher, scraper, necroDetector, profanityDetector, capsDetector, config
 
 def main(): #main function, goes through the all the stuff
     startTime = time.time()
@@ -19,9 +19,16 @@ def main(): #main function, goes through the all the stuff
             if profanityDetector.detectProfanity(i)==True: #if a lot of swears are detected
                 print("A thread has been sworn in a lot in ", i)
         elif config.retrieveConfig("ProfanityDetection").lower() == "all":
-            detectProfanity = profanityDetector.detectAllProfanity(i)
-            if len(detectProfanity) > True: #if a lot of swears are detected
+            detectedProfanity = profanityDetector.detectAllProfanity(i)
+            if len(detectedProfanity) > 0: #if a lot of swears are detected
                 print("The thread(s)", detectedProfanity, "has/have been sworn in a lot in ", i)
+        if config.retrieveConfig("CapsTitleDetection").lower() == "first":
+            if capsDetector.detectCapsT(i)==True: #if a lot of caps are detected
+                print("A thread has been sworn in a lot in ", i)
+        elif config.retrieveConfig("ProfanityDetection").lower() == "all":
+            detectedCapsT = capsDetector.detectAllCapsT(i)
+            if len(detectedCapsT) > 0: #if a lot of caps are detected
+                print("The thread(s)", detectedCapsT, "has/have been sworn in a lot in ", i)
     elapsedTime = time.time()-startTime
     if elapsedTime < config.retrieveConfig("Period"): #sleep until the period time has elapsed
         print("Sleeping") #debug
