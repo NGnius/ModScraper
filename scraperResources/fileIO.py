@@ -28,11 +28,20 @@ def retrieveFile(filename, binary=False): #retrieve file at location filename, r
     file.close() #always close your files, kids!
     return fileInfo
 
+def retrieveFileLines(filename, binary=False):
+    if binary:
+        file = open(filename, "rb")
+    else:
+        file = open(filename, "r")
+    fileInfo = file.readlines()
+    file.close() #always close your files, kids!
+    return fileInfo
+
 def writeFile(filename, information, binary=False, returnFile=False): #write information to file a location filename
     if binary:
         file = open(filename, "wb")
     else:
-        file = open(filename, "w")    
+        file = open(filename, "w")
     file.write(information)
     file.close()
     if returnFile:
@@ -46,4 +55,3 @@ def writeFile(filename, information, binary=False, returnFile=False): #write inf
         return fileInfo
     else:
         return True
-    

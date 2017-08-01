@@ -1,8 +1,8 @@
 import scraper, os
-import ForumsToCheck, Profanity
+import ForumsToCheck, Profanity, config
 ForumsToCheck.loadFile()
 forums = ForumsToCheck.forums #array of all forum section links
-arbitrarySwearCountThreshold = 20
+arbitrarySwearCountThreshold = config.retrieveConfig("SwearThreshold")
 
 def countProfanity (postLink, mode="count"): #count swear words in post postLink
     #count mode returns the swear count of the post

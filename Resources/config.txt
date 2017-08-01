@@ -1,0 +1,15 @@
+[custom]
+#Add or change anything here
+SwearThreshold = 30
+CapsTitleThreshold = -2
+Period = 10m
+
+[DEFAULT]
+#Do not delete this section
+SwearThreshold = 20
+CapsTitleThreshold = 0
+Period = 0
+NecroDetection = first
+CapsTitleDetection = first
+CapsContentsDetection = first
+ProfanityDetection = first
