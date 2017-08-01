@@ -20,7 +20,7 @@ def isCaps(string, threshold = 1): #find capitalised parts of a string
 def hasCapsT(postLink, mode="boolean"): #detect if the title of a post is all caps
     output = False
     scraper.page.ret(postLink)
-    title = scraper.findTopicTitle()
+    title = scraper.page.findTopicTitle()
     if arbitraryCapsCountAntiThreshold >= 0: #if threshold number is less than 0, add the amount to the string length
         isCapsResult = isCaps(title, threshold = arbitraryCapsCountAntiThreshold)
     else:
@@ -49,7 +49,7 @@ def detectCapsT(link, mode="boolean"): #detect if most recent thread has lots of
     #link mode returns the link to the post if lots of caps are detected, False if not
     #title mode returns the topic's title to the post if ltos of caps are detected, False if not
     scraper.page.ret(link)
-    firstPostLink = scraper.page.findFirstPost
+    firstPostLink = scraper.page.findFirstPost()
     return hasCapsT(firstPostLink, mode=mode)
 
 def detectAllCapsT(link, mode="list"): #WIP, untested and probably doesn't work, link must be a URL for a Robocraft forum section
@@ -58,7 +58,7 @@ def detectAllCapsT(link, mode="list"): #WIP, untested and probably doesn't work,
     #count mode returns the number of threads with lots of caps in their titles
     output = []
     scraper.page.ret(link)
-    posts = scraper.page.findAllPosts
+    posts = scraper.page.findAllPosts()
     for post in posts:
         if hasCapsT(post):
             if mode == "list":

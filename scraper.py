@@ -24,7 +24,7 @@ class pageClass:
         return findTitle.findTitle(self.raw)
     def findTopicTitle(self):
         fullTitle = self.findTitle()
-        topicTitle = fullTitle[wordSearcher.wordSearcher(" Topic: ", fullTitle, output="lastchar"):]
+        topicTitle = fullTitle[wordSearcher.wordSearcher(" Topic: ", fullTitle, output="lastchar")[0]:]
         return topicTitle
 page = pageClass()
 
