@@ -1,9 +1,9 @@
 import scraper, os, sys
 sys.path.append(os.getcwd()+'/Resources')
-import ForumsToCheck
+import ForumsToCheck, config
 ForumsToCheck.loadFile()
 forums = ForumsToCheck.forums #array of all forum section links
-arbitraryCapsCountAntiThreshold = 2
+arbitraryCapsCountAntiThreshold = config.retrieveConfig("CapsTitleThreshold")
 
 def isCaps(string, threshold = 1): #find capitalised parts of a string
     #returns True if the number of capitalised letters is greater than/equal to the threshold
@@ -21,6 +21,7 @@ def hasCapsT(postLink, mode="boolean"): #detect if the title of a post is all ca
     output = False
     scraper.page.ret(postLink)
     title = scraper.page.findTopicTitle()
+    print(title)
     if arbitraryCapsCountAntiThreshold >= 0: #if threshold number is less than 0, add the amount to the string length
         isCapsResult = isCaps(title, threshold = arbitraryCapsCountAntiThreshold)
     else:

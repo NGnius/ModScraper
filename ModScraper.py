@@ -24,11 +24,11 @@ def main(): #main function, goes through the all the stuff
                 print("The thread(s)", detectedProfanity, "has/have been sworn in a lot in ", i)
         if config.retrieveConfig("CapsTitleDetection").lower() == "first":
             if capsDetector.detectCapsT(i)==True: #if a lot of caps are detected
-                print("A thread has been sworn in a lot in ", i)
+                print("A thread has a lot of caps in the title in ", i)
         elif config.retrieveConfig("ProfanityDetection").lower() == "all":
             detectedCapsT = capsDetector.detectAllCapsT(i)
             if len(detectedCapsT) > 0: #if a lot of caps are detected
-                print("The thread(s)", detectedCapsT, "has/have been sworn in a lot in ", i)
+                print("The thread(s)", detectedCapsT, "has/have a lot of caps in the title(s) in ", i)
     elapsedTime = time.time()-startTime
     if elapsedTime < config.retrieveConfig("Period"): #sleep until the period time has elapsed
         print("Sleeping") #debug
