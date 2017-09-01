@@ -20,7 +20,6 @@ def isCaps(string, threshold = 1): #find capitalised parts of a string
 def isCapsTitle(post, threshold, mode="boolean"): #detect if the title of a post is all caps
     output = False
     title = post.findTopicTitle()
-    print(title)
     if threshold >= 0: #if threshold number is less than 0, add the amount to the string length
         isCapsResult = isCaps(title, threshold = arbitraryCapsCountAntiThreshold)
     else:
