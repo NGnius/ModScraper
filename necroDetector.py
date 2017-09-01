@@ -1,10 +1,9 @@
 '''Detect threads that have been bumped from the dead'''
-import time
 
 def timeDelta(a,b): #subtracts the time, in seconds, between struct_time a and b
     return abs( (((b.tm_year*365)+b.tm_yday)*24*60*60) - (((a.tm_year*365)+a.tm_yday)*24*60*60) )
 
-def isNecro(post, delta, mode = "boolean"): #detect if post has been necroed
+def isNecro(post, delta, mode = "boolean"): #detect if post has been bumped from the dead
     #boolean mode returns True if the post has been necroed, False if not
     #link mode returns postLink if the post has been necroed, False if not
     output = False

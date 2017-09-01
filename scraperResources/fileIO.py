@@ -1,6 +1,6 @@
 """This is for opening and closing files with a few other features tucked in
 for fun"""
-def addToFile(filename, information, overwrite=False):
+def addToFile(filename, information, overwrite=False): #add content to the end of a file
     if overwrite:
         file = open(filename, "w")
         file.write(information)

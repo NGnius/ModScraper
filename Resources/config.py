@@ -4,7 +4,7 @@ loadedConfig = {}
 def loadConfig(): #load the config.txt files
     config.read(os.getcwd()+"/Resources/config.txt")
 
-def appropriateType(string):
+def appropriateType(string): #guesses what strings mean
     if string.isnumeric(): #if string is a number
         return int(string)
     elif string[1:].isnumeric() and string[0] == "-": #if string is negative number
