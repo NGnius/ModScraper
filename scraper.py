@@ -4,6 +4,7 @@ import pageRet, fileIO, wordSearcher, findPosts, findDates, findTitle
 class pageClass:
     def ret(self, url):
         self.raw = pageRet.pageRet(url).decode()
+        self.url = url
         ignoreChars = False
         text = ""
         for char in self.raw:
@@ -26,6 +27,10 @@ class pageClass:
         fullTitle = self.findTitle()
         topicTitle = fullTitle[wordSearcher.wordSearcher(" Topic: ", fullTitle, output="lastchar")[0]:]
         return topicTitle
+    def searchraw(self, string):
+        return wordSearcher.wordSearcher(string, self.raw)
+    def searchtext(self, string):
+        return wordSearcher.wordSearcher(string, self.text)
 page = pageClass()
 
 def find(string):

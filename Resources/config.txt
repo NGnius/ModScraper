@@ -2,7 +2,11 @@
 #Add or change anything here
 SwearThreshold = 30
 CapsTitleThreshold = -2
-Period = 10m
+Period = 10mi
+NecroDetection = all
+CapsTitleDetection = all
+CapsContentsDetection = all
+ProfanityDetection = all
 
 [DEFAULT]
 #Do not delete this section
@@ -14,5 +18,4 @@ CapsTitleDetection = first
 CapsContentsDetection = first
 ProfanityDetection = first
 NecroTimeDelta = 1y
-Debug = yes
-Logging = not implemented yet
+Debug = you can't stop it lol

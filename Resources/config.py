@@ -23,14 +23,14 @@ def appropriateType(string):
         elif string[-2:].lower()=="mo": #months
             return int(string[:-2])*60*60*24*(365/12)
         elif string[-1:].lower()=="y": #years
-            return int(string[:-2])*60*60*24*365
+            return int(string[:-1])*60*60*24*365
     elif string[:-2].isnumeric(): #if string is a time (cont'd) (if has mi or mo ending)
-        elif string[-2:].lower()=="mi": #minutes
-            return int(string[:-1])*60
+        if string[-2:].lower()=="mi": #minutes
+            return int(string[:-2])*60
         elif string[-2:].lower()=="mo": #months
             return int(string[:-2])*60*60*24*(365/12)
     else:
-        return string
+        return string.lower()
 
 def retrieveConfig(key): #search through the sections of the config to try and find key
     if key in loadedConfig:
