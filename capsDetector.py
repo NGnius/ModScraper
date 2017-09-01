@@ -1,9 +1,4 @@
-import scraper, os, sys
-sys.path.append(os.getcwd()+'/Resources')
-import ForumsToCheck, config
-ForumsToCheck.loadFile()
-forums = ForumsToCheck.forums #array of all forum section links
-arbitraryCapsCountAntiThreshold = config.retrieveConfig("CapsTitleThreshold")
+'''Detects caps'''
 
 def isCaps(string, threshold = 1): #find capitalised parts of a string
     #returns True if the number of capitalised letters is greater than/equal to the threshold
@@ -21,9 +16,9 @@ def isCapsTitle(post, threshold, mode="boolean"): #detect if the title of a post
     output = False
     title = post.findTopicTitle()
     if threshold >= 0: #if threshold number is less than 0, add the amount to the string length
-        isCapsResult = isCaps(title, threshold = arbitraryCapsCountAntiThreshold)
+        isCapsResult = isCaps(title, threshold = threshold)
     else:
-        isCapsResult = isCaps(title, threshold = len(title)+arbitraryCapsCountAntiThreshold)
+        isCapsResult = isCaps(title, threshold = len(title)+threshold)
 
     if isCapsResult:
         if mode == "boolean":

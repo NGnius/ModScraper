@@ -2,7 +2,8 @@
 
 import sys, os, time
 sys.path.append(os.getcwd()+'/Resources')
-import ForumsToCheck, wordSearcher, scraper, config, necroDetector, profanityDetector, capsDetector
+import ForumsToCheck, scraper, config
+import necroDetector, profanityDetector, capsDetector
 
 def main(): #main function, goes through the all the stuff
     startTime = time.time()

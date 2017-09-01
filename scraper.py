@@ -2,6 +2,8 @@ import sys, os
 sys.path.append(os.getcwd()+'/scraperResources')
 import pageRet, fileIO, wordSearcher, findPosts, findDates, findTitle
 class pageClass:
+    def __init__(self):
+        self.search = wordSearcher.wordSearcher
     def ret(self, url):
         self.raw = pageRet.pageRet(url).decode()
         self.url = url
@@ -31,6 +33,7 @@ class pageClass:
         return wordSearcher.wordSearcher(string, self.raw)
     def searchtext(self, string):
         return wordSearcher.wordSearcher(string, self.text)
+
 page = pageClass()
 
 def find(string):
