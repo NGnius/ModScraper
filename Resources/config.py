@@ -16,10 +16,19 @@ def appropriateType(string):
     elif string[:-1].isnumeric(): #if string is a time
         if string[-1].lower() == "s": #seconds
             return int(string[:-1])
-        elif string[-1].lower()=="m": #minutes
-            return int(string[:-1])*60
         elif string[-1].lower()=="h": #hours
             return int(string[:-1])*60*60
+        elif string[-1].lower()=="d": #days
+            return int(string[-1:])*60*60*24
+        elif string[-2:].lower()=="mo": #months
+            return int(string[:-2])*60*60*24*(365/12)
+        elif string[-1:].lower()=="y": #years
+            return int(string[:-2])*60*60*24*365
+    elif string[:-2].isnumeric(): #if string is a time (cont'd) (if has mi or mo ending)
+        elif string[-2:].lower()=="mi": #minutes
+            return int(string[:-1])*60
+        elif string[-2:].lower()=="mo": #months
+            return int(string[:-2])*60*60*24*(365/12)
     else:
         return string
 

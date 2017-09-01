@@ -1,8 +1,11 @@
-import scraper, os, time, sys
+import scraper, os, time, sys, config
 sys.path.append(os.getcwd()+'/Resources')
 import ForumsToCheck
 ForumsToCheck.loadFile()
 forums = ForumsToCheck.forums #array of all forum section links
+
+def timeDelta(a,b): #subtracts the time, in seconds, between struct_time a and b
+    return abs( (((b.tm_year*365)+b.tm_yday)*24*60*60) - (((a.tm_year*365)+a.tm_yday)*24*60*60) )
 
 def isNecro(postLink, mode = "boolean"): #detect if post postLink has been necroed
     #boolean mode returns True if the post has been necroed, False if not
@@ -12,7 +15,7 @@ def isNecro(postLink, mode = "boolean"): #detect if post postLink has been necro
     dates = scraper.page.findDates() #find all the post and reply dates in the post
     #check if the years match for first and last post as well as last and second last post and set output appropriately
     if len(dates)>1: #to prevent the module from crashing if the thread has only one post in it (it's a new thread and only has the OP's 1st post)
-        if dates[0][0][0] != dates[-1][0][0] and dates[-2][0][0] != dates[-1][0][0]:
+        if timeDelta(dates[0][0], dates[-1][0])>config.retrieveConfig("NecroTimeDelta") and timeDelta(dates[-2][0], dates[-1][0])>config.retrieveConfig("NecroTimeDelta"):
             print ("Boop: We have a necro from ", postLink) #don't ask; printing weird things is more fun
             if mode == "boolean":
                 output = True

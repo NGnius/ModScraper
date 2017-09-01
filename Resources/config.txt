@@ -13,3 +13,6 @@ NecroDetection = first
 CapsTitleDetection = first
 CapsContentsDetection = first
 ProfanityDetection = first
+NecroTimeDelta = 1y
+Debug = yes
+Logging = not implemented yet
