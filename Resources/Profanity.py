@@ -17,5 +17,4 @@ def loadProfanity(): #load the Profanity.txt file
             profanity[len(profanity)-1][1]=int(word)
         except:
             profanity.append([word.lower(), 1])
-    print(profanity)
     return profanity
