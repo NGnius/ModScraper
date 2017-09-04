@@ -22,6 +22,7 @@ def main(): #main function, goes through the all the stuff
         time.sleep(config.retrieveConfig("Period")-elapsedTime) #sleep until the period time has elapsed
 
 def scrapePost(p, q, check): #scrape post if check is right
+    startTime = time.time()
     post = scraper.pageClass()
     log_it.logg("Scraping " + p, q, genus=["debug", "verbose"])
     post.ret(p)
@@ -34,8 +35,11 @@ def scrapePost(p, q, check): #scrape post if check is right
     if config.retrieveConfig("CapsTitleDetection")==check:
         if capsDetector.isCapsTitle(post, config.retrieveConfig("CapsTitleThreshold")):
             log_it.logg(p + " has a lot of caps in the title.", q, genus=["output"])
+    elapsedTime = time.time()-startTime #for science!
+    log_it.logg("Finished scraping " + p + " in " + str(elapsedTime), q, genus=["debug", "verbose"])
 
 def scrapeSection(section, q): #scrape a forum section by creating a thread for every page that needs to be scraped
+    startTime = time.time()
     page = scraper.pageClass()
     threads = []
     page.ret(section)
@@ -43,7 +47,7 @@ def scrapeSection(section, q): #scrape a forum section by creating a thread for 
     log_it.logg("Creating post scraping threads for " + section, q, genus=["debug"])
     if config.retrieveConfig("NecroDetection") == check or config.retrieveConfig("ProfanityDetection") == check or config.retrieveConfig("CapsTitleDetection") == check: #don't run if nothing wants it to
         sectionPosts = page.findAllPosts()
-        log_it.logg("Found " + str(len(sectionPosts)) + " threads in this forum section", q, genus=["debug", "verbose"])
+        log_it.logg("Found " + str(len(sectionPosts)) + " threads in section " + section, q, genus=["debug", "verbose"])
         for postNum in range(len(sectionPosts)):
             threads.append(Process(target=scrapePost, args=(sectionPosts[postNum], q, check,)))
             threads[postNum].start()
@@ -53,8 +57,11 @@ def scrapeSection(section, q): #scrape a forum section by creating a thread for 
         threads.append(Process(target=scrapePost, args=(sectionFirstPost, q, check,)))
         threads[len(threads)].start()
 
+    log_it.logg("Finished creating post scraping threads for " + section, q, genus=["debug"])
     for thread in threads: #wait for all created threads to finish
         thread.join()
+    elapsedTime = time.time()-startTime #for science!
+    log_it.logg("Time elapsed in scraping section " + section + " : " + str(elapsedTime), q, genus=["debug", "verbose"])
 
 def scrapeForums():
     threads=[]
@@ -63,5 +70,6 @@ def scrapeForums():
     for n in range(len(ForumsToCheck.forums)):
         threads.append(Process(target=scrapeSection, args=(ForumsToCheck.forums[n],q,)))
         threads[n].start()
+    log_it.logg("Finished creating section scraping threads", q, genus=["debug"])
     for thread in threads: #wait for all created threads to finish
         thread.join()
