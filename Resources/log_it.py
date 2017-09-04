@@ -36,8 +36,7 @@ def loggingThread(pipe_conn):
         savetologg(tolog[0], tolog[1])
 
 def startLogging(logg_conn):
+    fileIO.addToFile(filename, timestamp()+"Starting up...\n", overwrite=True) #overwrite log file if it already exists, create it if not
     savetologg("Received queue, starting logging thread", genus=["debug"])
     p = Process(target=loggingThread, args=(logg_conn,))
     p.start()
-
-fileIO.addToFile(filename, timestamp()+"Starting up...\n", overwrite=True) #overwrite log file if it already exists, create it if not
