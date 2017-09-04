@@ -36,7 +36,7 @@ def scrapePost(p, q, check): #scrape post if check is right
         if capsDetector.isCapsTitle(post, config.retrieveConfig("CapsTitleThreshold")):
             log_it.logg(p + " has a lot of caps in the title.", q, genus=["output"])
     elapsedTime = time.time()-startTime #for science!
-    log_it.logg("Finished scraping " + p + " in " + str(elapsedTime), q, genus=["debug", "verbose"])
+    log_it.logg("Finished scraping " + p + " in " + str(elapsedTime), q, genus=["verbose", "benchmarking"])
 
 def scrapeSection(section, q): #scrape a forum section by creating a thread for every page that needs to be scraped
     startTime = time.time()
@@ -61,7 +61,7 @@ def scrapeSection(section, q): #scrape a forum section by creating a thread for 
     for thread in threads: #wait for all created threads to finish
         thread.join()
     elapsedTime = time.time()-startTime #for science!
-    log_it.logg("Time elapsed in scraping section " + section + " : " + str(elapsedTime), q, genus=["debug", "verbose"])
+    log_it.logg("Time elapsed in scraping section " + section + " : " + str(elapsedTime), q, genus=["verbose", "benchmarking"])
 
 def scrapeForums():
     threads=[]
