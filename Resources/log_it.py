@@ -36,6 +36,7 @@ def loggingThread(pipe_conn):
         savetologg(tolog[0], tolog[1])
 
 def startLogging(logg_conn):
+    savetologg("Received queue, starting logging thread", genus=["debug"])
     p = Process(target=loggingThread, args=(logg_conn,))
     p.start()
 
