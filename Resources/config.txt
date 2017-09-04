@@ -18,5 +18,5 @@ CapsTitleDetection = first
 CapsContentsDetection = first
 ProfanityDetection = first
 NecroTimeDelta = 1y
-loggenuses = debugverbose
-printgenuses = output
+loggenuses = debugbenchmarking
+printgenuses = outputdebugverbose
