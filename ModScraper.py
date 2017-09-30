@@ -10,7 +10,9 @@ def init(queue):
     global q
     q = queue
 
-def main(): #main function, goes through the all the stuff
+def main():
+    '''() -> None
+    main function, goes through the all the stuff'''
     startTime = time.time() #for science!
     log_it.logg("Starting scraping round", q, genus=["debug"])
     scrapeForums()
@@ -21,7 +23,9 @@ def main(): #main function, goes through the all the stuff
         log_it.logg("Sleeping",q, genus=["debug"]) #debug
         time.sleep(config.retrieveConfig("Period")-elapsedTime) #sleep until the period time has elapsed
 
-def scrapePost(p, q, check): #scrape post if check is right
+def scrapePost(p, q, check):
+    ''' (url : str, Queue object, str)
+    scrape post if check is right'''
     startTime = time.time()
     post = scraper.pageClass()
     log_it.logg("Scraping " + p, q, genus=["debug", "verbose"])
@@ -38,7 +42,9 @@ def scrapePost(p, q, check): #scrape post if check is right
     elapsedTime = time.time()-startTime #for science!
     log_it.logg("Finished scraping " + p + " in " + str(elapsedTime), q, genus=["verbose", "benchmarking"])
 
-def scrapeSection(section, q): #scrape a forum section by creating a thread for every page that needs to be scraped
+def scrapeSection(section, q):
+    '''(url : str, Queue object)
+    scrape a forum section by creating a thread for every page that needs to be scraped'''
     startTime = time.time()
     page = scraper.pageClass()
     threads = []
@@ -64,6 +70,8 @@ def scrapeSection(section, q): #scrape a forum section by creating a thread for 
     log_it.logg("Time elapsed in scraping section " + section + " : " + str(elapsedTime), q, genus=["verbose", "benchmarking"])
 
 def scrapeForums():
+    '''() -> None
+    starts the forum section threads'''
     threads=[]
     log_it.logg("Creating section scraping threads", q, genus=["debug"])
     log_it.logg("There are " + str(len(ForumsToCheck.forums)) + " forum sections to scrape", q, genus=["debug", "verbose"])

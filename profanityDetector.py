@@ -2,11 +2,13 @@
 import Profanity
 profanityList = Profanity.loadProfanity() #load the list of profanity and weights
 
-def isProfanity(post, threshold): #returns True if the post is above the swear threshold, False if not
+def isProfanity(post, threshold):
+    '''(pageClass, int)->bool
+    returns True if the post is above the swear threshold, False if not'''
     output = False
     postDates = post.findDates()
     swearCount = 0
-    if len(postDates) > 0: #make sure the page isn't glitched and has at least one post (this prevents a crash)
+    if len(postDates) > 0: #make sure the page isn't glitched and has at least one post (this prevents a crash) (this shouldn't be needed, but it happens)
         for j in profanityList: #search for each swear word in the last post of the thread, and then up the swear count accordingly
             instances = len(post.search(j[0], post.text[postDates[-1][1]:]))
             swearCount += instances*j[1] #increase the swearCount by the number of times the word was used times the weight of that swear word

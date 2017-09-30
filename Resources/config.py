@@ -1,10 +1,14 @@
 import configparser, os
 config = configparser.ConfigParser()
 loadedConfig = {}
-def loadConfig(): #load the config.txt files
+def loadConfig():
+    '''() -> None
+    load the config.txt file'''
     config.read(os.getcwd()+"/Resources/config.txt")
 
-def appropriateType(string): #guesses what strings mean
+def appropriateType(string):
+    '''()-> str or int or bool
+    guesses what string's real type should be'''
     if string.isnumeric(): #if string is a number
         return int(string)
     elif string[1:].isnumeric() and string[0] == "-": #if string is negative number
@@ -32,7 +36,9 @@ def appropriateType(string): #guesses what strings mean
     else:
         return string.lower()
 
-def retrieveConfig(key): #search through the sections of the config to try and find key
+def retrieveConfig(key):
+    '''(str) -> str or int or bool
+    search through the sections of the config to try and find key'''
     if key in loadedConfig:
         return loadedConfig[key]
     elif key in config["custom"]:
@@ -43,6 +49,5 @@ def retrieveConfig(key): #search through the sections of the config to try and f
         return loadedConfig[key]
     else:
         print("Invalid Key")
-        return None
 
 loadConfig()

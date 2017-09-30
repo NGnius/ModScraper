@@ -1,5 +1,7 @@
 import wordSearcher
-def FirstPost(rawpage): #finds the first post in a Robocraft forum section, through the use of (coding) magic
+def FirstPost(rawpage):
+    '''(str) -> url: str
+    finds the first post in a forum section, through the use of (coding) magic'''
     lastUpdateLoc = wordSearcher.wordSearcher(" and was last updated by", rawpage, multipleLocs = False)[0]
     FirstPostLinkStart = lastUpdateLoc + wordSearcher.wordSearcher(" href=\"", rawpage[lastUpdateLoc:], output="lastChar")[2] #see note below about why that's a two
     '''Since the format is "last updated by [username link] [time elapsed and link to post] ago",
@@ -8,7 +10,9 @@ def FirstPost(rawpage): #finds the first post in a Robocraft forum section, thro
     FirstPostLinkEnd = FirstPostLinkStart + wordSearcher.wordSearcher("\"", rawpage[FirstPostLinkStart:], multipleLocs = False)[0] #find the closing " for the url
     return rawpage[FirstPostLinkStart:FirstPostLinkEnd]
 
-def FindPosts(rawpage): #finds all posts in a Robocraft forum section
+def FindPosts(rawpage):
+    '''(str) -> list of url : str
+    finds all posts in a forum section'''
     agoLocs = wordSearcher.wordSearcher(" ago", rawpage)[1:] #[1:] is to ignore the top part of each forum section which displays the most recently updated topic
     posts = []
     for loc in agoLocs:

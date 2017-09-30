@@ -1,6 +1,8 @@
 """This is for opening and closing files with a few other features tucked in
 for fun"""
-def addToFile(filename, information, overwrite=False): #add content to the end of a file
+def addToFile(filename, information, overwrite=False):
+    '''(str, str [, bool]) -> True
+    add content to the end of a file, or create a new file'''
     if overwrite:
         file = open(filename, "w")
         file.write(information)
@@ -19,7 +21,9 @@ def addToFile(filename, information, overwrite=False): #add content to the end o
             file.close()
     return True
 
-def retrieveFile(filename, binary=False): #retrieve file at location filename, return file contents
+def retrieveFile(filename, binary=False):
+    '''(str [, bool]) -> str
+    retrieve file at location filename, return file contents'''
     if binary:
         file = open(filename, "rb")
     else:
@@ -29,6 +33,8 @@ def retrieveFile(filename, binary=False): #retrieve file at location filename, r
     return fileInfo
 
 def retrieveFileLines(filename, binary=False):
+    '''(str [, bool]) -> list of str
+    retrieve file a location filename, return file line by line'''
     if binary:
         file = open(filename, "rb")
     else:
@@ -37,7 +43,9 @@ def retrieveFileLines(filename, binary=False):
     file.close() #always close your files, kids!
     return fileInfo
 
-def writeFile(filename, information, binary=False, returnFile=False): #write information to file a location filename
+def writeFile(filename, information, binary=False, returnFile=False):
+    '''(str, str [, bool, bool]) -> str (if returnFile == True) or True
+    write information to file a location filename'''
     if binary:
         file = open(filename, "wb")
     else:

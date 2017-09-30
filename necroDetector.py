@@ -1,11 +1,15 @@
 '''Detect threads that have been bumped from the dead'''
 
-def timeDelta(a,b): #subtracts the time, in seconds, between struct_time a and b
+def timeDelta(a,b):
+    '''(struct_time object, struct_time object) -> float
+    subtracts the time, in seconds, between struct_time a and b'''
     return abs( (((b.tm_year*365)+b.tm_yday)*24*60*60) - (((a.tm_year*365)+a.tm_yday)*24*60*60) )
 
-def isNecro(post, delta, mode = "boolean"): #detect if post has been bumped from the dead
-    #boolean mode returns True if the post has been necroed, False if not
-    #link mode returns postLink if the post has been necroed, False if not
+def isNecro(post, delta, mode = "boolean"):
+    '''(pageClass, int [, string])
+    detect if post has been bumped from the dead
+    "boolean" mode returns True if the post has been necroed, False if not
+    "link" mode returns postLink if the post has been necroed, False if not'''
     output = False
     dates = post.findDates() #find all the post and reply dates in the post
     #check if the years match for first and last post as well as last and second last post and set output appropriately

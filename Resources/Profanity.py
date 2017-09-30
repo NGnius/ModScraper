@@ -1,5 +1,7 @@
 import scraper, os
-def loadProfanity(): #load the Profanity.txt file
+def loadProfanity():
+    '''()-> list of [str, int]
+    load the Profanity.txt file'''
     file = scraper.fileIO.retrieveFile(os.getcwd()+r"/Resources/Profanity.txt")
     profanity = [] #in format [word, weight] - word is the profanity word, while weight is the value that is added everytime that word is encountered
     word = ""

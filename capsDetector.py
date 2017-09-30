@@ -1,6 +1,8 @@
 '''Detects caps'''
 
-def isCaps(string, threshold = 1): #find capitalised parts of a string
+def isCaps(string, threshold = 1):
+    '''(str [,int]) -> bool
+    find capitalised parts of a string'''
     #returns True if the number of capitalised letters is greater than/equal to the threshold
     output = False
     capsCount = 0
@@ -12,7 +14,9 @@ def isCaps(string, threshold = 1): #find capitalised parts of a string
             break
     return output
 
-def isCapsTitle(post, threshold, mode="boolean"): #detect if the title of a post is all caps
+def isCapsTitle(post, threshold, mode="boolean"):
+    '''(pageClass, int [, str])
+    detect if the title of a post is all caps'''
     output = False
     title = post.findTopicTitle()
     if threshold >= 0: #if threshold number is less than 0, add the amount to the string length

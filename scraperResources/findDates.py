@@ -1,5 +1,7 @@
 import wordSearcher, time
 def findDates(textpage):
+    '''(str) -> list of struct_time objects
+    strip time from forum thread with time.strptime'''
     dateEnds = wordSearcher.wordSearcher(" at ", textpage) #the first thing that always come after a date is "at [time]", so this finds what is right after the date
     dates = []
     for i in dateEnds: #strip the date from every suspected date
