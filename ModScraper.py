@@ -3,7 +3,7 @@
 import sys, os, time
 sys.path.append(os.getcwd()+'/Resources')
 import ForumsToCheck, scraper, config, log_it
-import necroDetector, profanityDetector, capsDetector
+import necroDetector, profanityDetector, capsDetector, annoyanceAlerts
 from multiprocessing import Process
 
 def init(queue):
@@ -39,6 +39,13 @@ def scrapePost(p, q, check):
     if config.retrieveConfig("CapsTitleDetection")==check:
         if capsDetector.isCapsTitle(post, config.retrieveConfig("CapsTitleThreshold")):
             log_it.logg(p + " has a lot of caps in the title.", q, genus=["output"])
+    if config.retrieveConfig("CrusherAlerts")==check:
+        if annoyanceAlerts.isCrusher(post):
+            log_it.logg("Crusher Alert at " + p)
+    if config.retrieveConfig("RotatingPlatformAlerts")==check:
+        if annoyanceAlerts.isRotatingPlatforms(post):
+            log_it.logg("Rotating Platforms Alert at " + p)
+    
     elapsedTime = time.time()-startTime #for science!
     log_it.logg("Finished scraping " + p + " in " + str(elapsedTime), q, genus=["verbose", "benchmarking"])
 

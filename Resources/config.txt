@@ -1,8 +1,8 @@
 [custom]
 #Add or change anything here
 SwearThreshold = 30
-CapsTitleThreshold = -2
-Period = 10mi
+CapsTitleThreshold = 5
+Period = 2h
 NecroDetection = all
 CapsTitleDetection = all
 CapsContentsDetection = all
@@ -17,6 +17,8 @@ NecroDetection = first
 CapsTitleDetection = first
 CapsContentsDetection = first
 ProfanityDetection = first
+CrusherAlerts = first
+RotatingPlatformAlerts = first
 NecroTimeDelta = 1y
-loggenuses = output
-printgenuses = debugverbosebenchmarking
+loggenuses = debugverbosebenchmarking
+printgenuses = output
