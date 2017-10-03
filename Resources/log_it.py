@@ -13,8 +13,8 @@ def timestamp():
     localtime = time.localtime()
     return "[" + str(localtime.tm_mday) + "/" + str(localtime.tm_mon) + "/" + str(localtime.tm_year) + " at " + str(localtime.tm_hour) + ":" + str(localtime.tm_min) + ":" + str(localtime.tm_sec) + "]"
 
-def savetologg(string, genus=["debug"]):
-    '''(str, list of str) -> None
+def savetologg(string, genus=["debug"], overwrite=False):
+    '''(str, list of str, bool) -> None
     write to the log'''
     isin = True
     for item in genus: #check for genuses in loggenuses
@@ -22,7 +22,7 @@ def savetologg(string, genus=["debug"]):
             isin = False
             break
     if isin or "log" in genus:
-        fileIO.addToFile(filename, timestamp()+string+"\n")
+        fileIO.addToFile(filename, timestamp()+string+"\n", overwrite=overwrite)
     isin = True
     for item in genus: #check for genuses in printgenuses
         if item not in config.retrieveConfig("printgenuses"):
@@ -31,15 +31,15 @@ def savetologg(string, genus=["debug"]):
     if isin or "print" in genus:
         print(timestamp()+string)
 
-def logg(string, conn, genus=["debug"]):
-    conn.put([string, genus])
+def logg(string, conn, genus=["debug"], overwriteLog = False):
+    conn.put([string, genus, overwriteLog])
 
 def loggingThread(pipe_conn):
     '''(Queue object) -> None
     continuously run savetologg (preferably in a seperate process)'''
     while True:
         tolog = pipe_conn.get()
-        savetologg(tolog[0], tolog[1])
+        savetologg(tolog[0], tolog[1], tolog[2])
 
 def startLogging(logg_conn):
     '''(Queue object) -> None

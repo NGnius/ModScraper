@@ -20,5 +20,6 @@ ProfanityDetection = first
 CrusherAlerts = first
 RotatingPlatformAlerts = first
 NecroTimeDelta = 1y
+OverwritePer = never
 loggenuses = debugverbosebenchmarking
 printgenuses = output

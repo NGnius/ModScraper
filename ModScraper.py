@@ -14,7 +14,10 @@ def main():
     '''() -> None
     main function, goes through the all the stuff'''
     startTime = time.time() #for science!
-    log_it.logg("----Starting scraping round----", q, genus=["log", "print"])
+    if config.retrieveConfig("OverwritePer") == "run":
+        log_it.logg("----Starting scraping round----", q, genus=["log", "print"], overwriteLog=True)
+    else:
+        log_it.logg("----Starting scraping round----", q, genus=["log", "print"])
     scrapeForums()
     elapsedTime = time.time()-startTime #for science!
     log_it.logg("----Scraping round completed successfully----", q, genus=["log", "print"])
