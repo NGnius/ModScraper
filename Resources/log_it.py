@@ -45,7 +45,7 @@ def startLogging(logg_conn):
     '''(Queue object) -> None
     start loggingThread as a multiprocessing Process'''
     if config.retrieveConfig("OverwritePer") == "never":
-        fileIO.addToFile(filename, timestamp()+"Starting up...\n", overwrite=True) #overwrite log file if it already exists, create it if not
+        fileIO.addToFile(filename, timestamp()+"Starting up...\n") #overwrite log file if it already exists, create it if not
     else:
         try: #overwrite log file if it already exists, create it if not
             fileIO.addToFile(filename, timestamp()+"Starting up...\n", overwrite=False)
