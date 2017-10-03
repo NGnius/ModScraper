@@ -14,10 +14,10 @@ def main():
     '''() -> None
     main function, goes through the all the stuff'''
     startTime = time.time() #for science!
-    log_it.logg("Starting scraping round", q, genus=["debug"])
+    log_it.logg("----Starting scraping round----", q, genus=["log", "print"])
     scrapeForums()
     elapsedTime = time.time()-startTime #for science!
-    log_it.logg("Scraping round completed successfully", q, genus=["debug"])
+    log_it.logg("----Scraping round completed successfully----", q, genus=["log", "print"])
     log_it.logg ("Time elapsed in latest scrape: " + str(elapsedTime), q, genus=["benchmarking"])
     if elapsedTime < config.retrieveConfig("Period"): #if the period specified in config hasn't elapsed completely
         log_it.logg("Sleeping",q, genus=["debug"]) #debug
@@ -41,11 +41,11 @@ def scrapePost(p, q, check):
             log_it.logg(p + " has a lot of caps in the title.", q, genus=["output"])
     if config.retrieveConfig("CrusherAlerts")==check:
         if annoyanceAlerts.isCrusher(post):
-            log_it.logg("Crusher Alert at " + p)
+            log_it.logg("Crusher Alert at " + p, q, genus=["output"])
     if config.retrieveConfig("RotatingPlatformAlerts")==check:
         if annoyanceAlerts.isRotatingPlatforms(post):
-            log_it.logg("Rotating Platforms Alert at " + p)
-    
+            log_it.logg("Rotating Platforms Alert at " + p, q, genus=["output"])
+
     elapsedTime = time.time()-startTime #for science!
     log_it.logg("Finished scraping " + p + " in " + str(elapsedTime), q, genus=["verbose", "benchmarking"])
 

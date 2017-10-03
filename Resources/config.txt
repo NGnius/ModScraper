@@ -1,7 +1,7 @@
 [custom]
 #Add or change anything here
 SwearThreshold = 30
-CapsTitleThreshold = 5
+CapsTitleThreshold = 10
 Period = 2h
 NecroDetection = all
 CapsTitleDetection = all

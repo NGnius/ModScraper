@@ -21,8 +21,10 @@ def isCapsTitle(post, threshold, mode="boolean"):
     title = post.findTopicTitle()
     if threshold >= 0: #if threshold number is less than 0, add the amount to the string length
         isCapsResult = isCaps(title, threshold = threshold)
-    else:
+    elif len(title) > abs(threshold):
         isCapsResult = isCaps(title, threshold = len(title)+threshold)
+    else:
+        isCapsResult = isCaps(title, threshold = abs(threshold))
 
     if isCapsResult:
         if mode == "boolean":
