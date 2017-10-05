@@ -4,7 +4,7 @@ loadedConfig = {}
 def loadConfig():
     '''() -> None
     load the config.txt file'''
-    config.read(os.getcwd()+"/Resources/config.txt")
+    config.read(os.getcwd()+"/config.txt")
 
 def appropriateType(string):
     '''()-> str or int or bool
