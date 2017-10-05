@@ -48,6 +48,6 @@ def retrieveConfig(key):
         loadedConfig[key] =  appropriateType(config["DEFAULT"][key])
         return loadedConfig[key]
     else:
-        print("Invalid Key")
+        print("Invalid Key", key)
 
 loadConfig()

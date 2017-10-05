@@ -3,7 +3,7 @@
 import sys, os, time
 sys.path.append(os.getcwd()+'/Resources')
 import ForumsToCheck, scraper, config, log_it
-import necroDetector, profanityDetector, capsDetector, annoyanceAlerts
+import necroDetector, profanityDetector, capsDetector, annoyanceAlerts, termDetector
 from multiprocessing import Process
 
 def init(queue):
@@ -48,6 +48,9 @@ def scrapePost(p, q, check):
     if config.retrieveConfig("RotatingPlatformAlerts")==check:
         if annoyanceAlerts.isRotatingPlatforms(post):
             log_it.logg("Rotating Platforms Alert at " + p, q, genus=["output"])
+    if config.retrieveConfig("TermDetection")==check:
+        if termDetector.containsTerm(post):
+            log_it.logg(p + " has something mentioned in it that it shouldn't", q, genus=["output"])
 
     elapsedTime = time.time()-startTime #for science!
     log_it.logg("Finished scraping " + p + " in " + str(elapsedTime), q, genus=["verbose", "benchmarking"])

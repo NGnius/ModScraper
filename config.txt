@@ -9,6 +9,7 @@ CapsContentsDetection = all
 ProfanityDetection = all
 CrusherAlerts = all
 RotatingPlatformAlerts = all
+TermDetection = all
 
 [DEFAULT]
 #Do not delete this section
@@ -21,6 +22,7 @@ CapsContentsDetection = first
 ProfanityDetection = first
 CrusherAlerts = first
 RotatingPlatformAlerts = first
+TermDetection = first
 NecroTimeDelta = 1y
 OverwritePer = never
 loggenuses = debugverbosebenchmarking
