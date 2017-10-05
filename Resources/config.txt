@@ -1,12 +1,14 @@
 [custom]
 #Add or change anything here
 SwearThreshold = 30
-CapsTitleThreshold = 10
+CapsTitleThreshold = -2
 Period = 2h
 NecroDetection = all
 CapsTitleDetection = all
 CapsContentsDetection = all
 ProfanityDetection = all
+CrusherAlerts = all
+RotatingPlatformAlerts = all
 
 [DEFAULT]
 #Do not delete this section
