@@ -1,6 +1,6 @@
 [custom]
 #Add or change anything here
-SwearThreshold = 30
+SwearThreshold = 10
 CapsTitleThreshold = -2
 Period = 2h
 NecroDetection = all
@@ -10,6 +10,7 @@ ProfanityDetection = all
 CrusherAlerts = all
 RotatingPlatformAlerts = all
 TermDetection = none
+NecroTimeDelta = 1mo
 
 [DEFAULT]
 #Do not delete this section
