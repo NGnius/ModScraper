@@ -9,7 +9,7 @@ CapsContentsDetection = all
 ProfanityDetection = all
 CrusherAlerts = all
 RotatingPlatformAlerts = all
-TermDetection = all
+TermDetection = none
 
 [DEFAULT]
 #Do not delete this section
